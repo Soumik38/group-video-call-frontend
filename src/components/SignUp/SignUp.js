@@ -24,15 +24,16 @@ const SignUp = (props) => {
       //     }
       //   })
       // }
-      await axios.post(`https://videocallbackend-n08p.onrender.com/signup`,{email,pass,name}).then(res=>{
+      await axios.post(`https://group-call-backend.onrender.com/signup`,{email,pass,name}).then(res=>{
         console.log(res.data)
         if(res.data==='exists'){
           alert('User already exists.')   
         }else if(res.data==='notexists'){
           localStorage.setItem('jwt', JSON.stringify('loggedin'))
           localStorage.setItem('myEmail', JSON.stringify(email))
+          localStorage.setItem('isLoggedIn',true)
           props.history.push('/home')
-        // nav('/home',{state:{myEmail:email}})
+        
         }
       })
     }catch(e){

@@ -3,20 +3,22 @@ import styled from 'styled-components';
 import socket from '../../socket';
 
 const Main = (props) => {
-  const roomRef = useRef();
-  const userRef = useRef();
+  const roomRef = useRef()
+  const userRef = useRef()
   const [email,setEmail]=useState('')
   const [name,setName]=useState('')
-  const [err, setErr] = useState(false);
-  const [errMsg, setErrMsg] = useState('');
+  const [err, setErr] = useState(false)
+  const [errMsg, setErrMsg] = useState('')
+  const [loggedIn,setLoggedIn]=useState(false)
 
   useEffect(()=>{
 		setEmail(JSON.parse(localStorage.getItem('myEmail')))
+    setLoggedIn(localStorage.getItem('isLoggedIn'))
 	},[setEmail])
 
   useEffect(() => {
 		// Fetch user name by email
-		fetch(`https://videocallbackend-n08p.onrender.com/user/${email}`)
+		fetch(`https://group-call-backend.onrender.com/user/${email}`)
 		  .then(response => response.json())
 		  .then(data => {
 			if (data.error) {
@@ -53,7 +55,8 @@ const Main = (props) => {
   function clickJoin() {
     const roomName = roomRef.current.value;
     const userName = userRef.current.value;
-
+    console.log(roomName)
+    console.log(userName)
     if (!roomName || !userName) {
       setErr(true);
       setErrMsg('Enter Room Name or User Name');
@@ -64,13 +67,17 @@ const Main = (props) => {
 
   return (
     <div>
-      <div>
+      {loggedIn && <div>
         {name}
         <div onClick={()=>{
           props.history.push('/signin')
           localStorage.clear()
         }}>logout</div>
-      </div>
+      </div>}
+      {!loggedIn && <div>
+          <div onClick={()=>props.history.push('/signin')}>Sign In</div>
+          <div onClick={()=>props.history.push('/signup')}>Sign Up</div>
+        </div>}
     <MainContainer>
       <Row>
         <Label htmlFor="roomName">Room Name</Label>
@@ -78,7 +85,7 @@ const Main = (props) => {
       </Row>
       <Row>
         <Label htmlFor="userName">User Name</Label>
-        <Input type="text" id="userName" ref={userRef} value={name} />
+        <Input type="text" id="userName" ref={userRef} value={name} onChange={(e)=>setName(e.target.value)}/>
       </Row>
       <JoinButton onClick={clickJoin}> Join </JoinButton>
       {err ? <Error>{errMsg}</Error> : null}

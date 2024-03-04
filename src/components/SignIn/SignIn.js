@@ -10,14 +10,14 @@ const SignIn = (props) => {
     async function submit(e){
         e.preventDefault()
         try{
-          await axios.post(`https://videocallbackend-n08p.onrender.com/signin`,{email,pass}).then(res=>{
+          await axios.post(`https://group-call-backend.onrender.com/signin`,{email,pass}).then(res=>{
             console.log(res)
             if(res.data==='authorize'){
               localStorage.setItem('token',true)
               localStorage.setItem('myEmail', JSON.stringify(email))
+              localStorage.setItem('isLoggedIn',true)
               props.history.push('/')
-              // nav('/home')
-              // nav('/home',{state:{myEmail:email}})
+              
             }else if(res.data==='notexists'){
               alert('User does not exist.')
             }else if(res.data==='wrongpass'){
