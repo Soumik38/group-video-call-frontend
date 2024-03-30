@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
-import styled from 'styled-components';
 import socket from '../../socket';
+import './Main.css'
 
 const Main = (props) => {
   const roomRef = useRef()
@@ -17,7 +17,6 @@ const Main = (props) => {
 	},[setEmail])
 
   useEffect(() => {
-		// Fetch user name by email
 		fetch(`https://group-call-backend.onrender.com/user/${email}`)
 		  .then(response => response.json())
 		  .then(data => {
@@ -30,8 +29,6 @@ const Main = (props) => {
 		  .catch(error => console.error('Error fetching user by email:', error));
 		  localStorage.setItem('myName', JSON.stringify(name))
 	  }, [email,name])
-
-
 
 
   useEffect(() => {
@@ -49,7 +46,6 @@ const Main = (props) => {
       }
     })
   }, [props.history])
-
 
 
   function clickJoin() {
@@ -78,68 +74,21 @@ const Main = (props) => {
           <div onClick={()=>props.history.push('/signin')}>Sign In</div>
           <div onClick={()=>props.history.push('/signup')}>Sign Up</div>
         </div>}
-    <MainContainer>
-      <Row>
-        <Label htmlFor="roomName">Room Name</Label>
-        <Input type="text" id="roomName" ref={roomRef} />
-      </Row>
-      <Row>
-        <Label htmlFor="userName">User Name</Label>
-        <Input type="text" id="userName" ref={userRef} value={name} onChange={(e)=>setName(e.target.value)}/>
-      </Row>
-      <JoinButton onClick={clickJoin}> Join </JoinButton>
-      {err ? <Error>{errMsg}</Error> : null}
-    </MainContainer>
+    <div className='MainContainer'>
+      <div className='Row'>
+        <div className='Label' htmlFor="roomName">Room Name</div>
+        <input type="text" id="roomName" ref={roomRef} />
+      </div>
+      <div className='Row'>
+        <div className='Label' htmlFor="userName">User Name</div>
+        <input type="text" id="userName" ref={userRef} value={name} onChange={(e)=>setName(e.target.value)}/>
+      </div>
+      <div className='JoinButton' onClick={clickJoin}> Join </div>
+      {err ? <div className='Error'>{errMsg}</div> : null}
+    </div>
     </div>
   );
 };
 
-const MainContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-top: 15px;
-  line-height: 35px;
-`;
-
-const Label = styled.label``;
-
-const Input = styled.input`
-  width: 150px;
-  height: 35px;
-  margin-left: 15px;
-  padding-left: 10px;
-  outline: none;
-  border: none;
-  border-radius: 5px;
-`;
-
-const Error = styled.div`
-  margin-top: 10px;
-  font-size: 20px;
-  color: #e85a71;
-`;
-
-const JoinButton = styled.button`
-  height: 40px;
-  margin-top: 35px;
-  outline: none;
-  border: none;
-  border-radius: 15px;
-  color: #d8e9ef;
-  background-color: #4ea1d3;
-  font-size: 25px;
-  font-weight: 500;
-
-  :hover {
-    background-color: #7bb1d1;
-    cursor: pointer;
-  }
-`;
 
 export default Main;

@@ -6,6 +6,8 @@ import VideoCard from '../Video/VideoCard';
 import BottomBar from '../BottomBar/BottomBar';
 import Chat from '../Chat/Chat';
 
+import './Room.css'
+
 const Room = (props) => {
   const currentUser = sessionStorage.getItem('user');
   const [peers, setPeers] = useState([]);
@@ -183,22 +185,21 @@ const Room = (props) => {
 
   function createUserVideo(peer, index, arr) {
     return (
-      <VideoBox
-        className={`width-peer${peers.length > 8 ? '' : peers.length}`}
-        onClick={expandScreen}
+      <div
+        className={`VideoBox width-peer${peers.length > 8 ? '' : peers.length}`}
         key={index}
       >
         {writeUserName(peer.userName)}
-        <FaIcon className='fas fa-expand' />
+        <div className='FaIcon fas ' />
         <VideoCard key={index} peer={peer} number={arr.length} />
-      </VideoBox>
+      </div>
     );
   }
 
   function writeUserName(userName, index) {
     if (userVideoAudio.hasOwnProperty(userName)) {
       if (!userVideoAudio[userName].video) {
-        return <UserName key={userName}>{userName}</UserName>;
+        return <div className='UserName' key={userName}>{userName}</div>;
       }
     }
   }
@@ -290,22 +291,7 @@ const Room = (props) => {
     }
   };
 
-  const expandScreen = (e) => {
-    const elem = e.target;
-
-    if (elem.requestFullscreen) {
-      elem.requestFullscreen();
-    } else if (elem.mozRequestFullScreen) {
-      /* Firefox */
-      elem.mozRequestFullScreen();
-    } else if (elem.webkitRequestFullscreen) {
-      /* Chrome, Safari & Opera */
-      elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) {
-      /* IE/Edge */
-      elem.msRequestFullscreen();
-    }
-  };
+  
 
   const clickBackground = () => {
     if (!showVideoDevices) return;
@@ -342,29 +328,27 @@ const Room = (props) => {
   };
 
   return (
-    <RoomContainer onClick={clickBackground}>
-      <VideoAndBarContainer>
-        <VideoContainer>
+    <div className='RoomContainer' onClick={clickBackground}>
+      <div className='VideoAndBarContainer'>
+        <div className='VideoContainer'>
           {/* Current User Video */}
-          <VideoBox
-            className={`width-peer${peers.length > 8 ? '' : peers.length}`}
-          >
+          <div className={`VideoBox width-peer${peers.length > 8 ? '' : peers.length}`}>
             {userVideoAudio['localUser'].video ? null : (
-              <UserName>{currentUser}</UserName>
+              <div className='UserName'>{currentUser}</div>
             )}
-            <FaIcon className='fas fa-expand' />
+            <div className='FaIcon fas ' />
             <MyVideo
-              onClick={expandScreen}
+              
               ref={userVideoRef}
               muted
               autoPlay
               playInline
             ></MyVideo>
-          </VideoBox>
+          </div>
           {/* Joined User Vidoe */}
           {peers &&
             peers.map((peer, index, arr) => createUserVideo(peer, index, arr))}
-        </VideoContainer>
+        </div>
         <BottomBar
           clickScreenSharing={clickScreenSharing}
           clickChat={clickChat}
@@ -377,70 +361,12 @@ const Room = (props) => {
           showVideoDevices={showVideoDevices}
           setShowVideoDevices={setShowVideoDevices}
         />
-      </VideoAndBarContainer>
+      </div>
       <Chat display={displayChat} roomId={roomId} />
-    </RoomContainer>
+    </div>
   );
 };
 
-const RoomContainer = styled.div`
-  display: flex;
-  width: 100%;
-  max-height: 100vh;
-  flex-direction: row;
-`;
-
-const VideoContainer = styled.div`
-  max-width: 100%;
-  height: 92%;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  align-items: center;
-  padding: 15px;
-  box-sizing: border-box;
-  gap: 10px;
-`;
-
-const VideoAndBarContainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100vh;
-`;
-
 const MyVideo = styled.video``;
-
-const VideoBox = styled.div`
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  > video {
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  :hover {
-    > i {
-      display: block;
-    }
-  }
-`;
-
-const UserName = styled.div`
-  position: absolute;
-  font-size: calc(20px + 5vmin);
-  z-index: 1;
-`;
-
-const FaIcon = styled.i`
-  display: none;
-  position: absolute;
-  right: 15px;
-  top: 15px;
-`;
 
 export default Room;

@@ -22,8 +22,8 @@ const BottomBar = ({
 
   return (
     <Bar>
-      <Left>
-        <CameraButton onClick={toggleCameraAudio} data-switch='video'>
+      <Center>
+        <Button onClick={toggleCameraAudio} data-switch='video'>
           <div>
             {userVideoAudio.video ? (
               <FaIcon className='fas fa-video'></FaIcon>
@@ -31,21 +31,9 @@ const BottomBar = ({
               <FaIcon className='fas fa-video-slash'></FaIcon>
             )}
           </div>
-          Camera
-        </CameraButton>
-        {showVideoDevices && (
-          <SwitchList>
-            {videoDevices.length > 0 &&
-              videoDevices.map((device) => {
-                return <div key={device.deviceId} onClick={clickCameraDevice} data-value={device.deviceId} >{device.label}</div>;
-              })}
-            <div>Switch Camera</div>
-          </SwitchList>
-        )}
-        <SwitchMenu onClick={handleToggle}>
-          <i className='fas fa-angle-up'></i>
-        </SwitchMenu>
-        <CameraButton onClick={toggleCameraAudio} data-switch='audio'>
+        </Button>
+        
+        <Button onClick={toggleCameraAudio} data-switch='audio'>
           <div>
             {userVideoAudio.audio ? (
               <FaIcon className='fas fa-microphone'></FaIcon>
@@ -53,28 +41,27 @@ const BottomBar = ({
               <FaIcon className='fas fa-microphone-slash'></FaIcon>
             )}
           </div>
-          Audio
-        </CameraButton>
-      </Left>
-      <Center>
-        <ChatButton onClick={clickChat}>
+        </Button>
+      
+        <Button onClick={clickChat}>
           <div>
             <FaIcon className='fas fa-comments'></FaIcon>
           </div>
-          Chat
-        </ChatButton>
-        <ScreenButton onClick={clickScreenSharing}>
+        </Button>
+        <Button onClick={clickScreenSharing}>
           <div>
             <FaIcon
-              className={`fas fa-desktop ${screenShare ? 'sharing' : ''}`}
+              className={`fas fa-upload ${screenShare ? 'sharing' : ''}`}
             ></FaIcon>
           </div>
-          Share Screen
-        </ScreenButton>
+        </Button>
+      
+        <Stop onClick={goToBack}>
+          <div>
+            <FaIcon className='fas fa-phone'></FaIcon>
+          </div>
+        </Stop>
       </Center>
-      <Right>
-        <StopButton onClick={goToBack}>Stop</StopButton>
-      </Right>
     </Bar>
   );
 };
@@ -89,13 +76,6 @@ const Bar = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 500;
-  background-color: #4ea1d3;
-`;
-const Left = styled.div`
-  display: flex;
-  align-items: center;
-
-  margin-left: 15px;
 `;
 
 const Center = styled.div`
@@ -104,64 +84,32 @@ const Center = styled.div`
   justify-content: center;
 `;
 
-const Right = styled.div``;
 
-const ChatButton = styled.div`
-  width: 75px;
-  border: none;
-  font-size: 0.9375rem;
-  padding: 5px;
-
-  :hover {
-    background-color: #77b7dd;
-    cursor: pointer;
-    border-radius: 15px;
-  }
-
-  * {
-    pointer-events: none;
-  }
-`;
-
-const ScreenButton = styled.div`
-  width: auto;
-  border: none;
-  font-size: 0.9375rem;
-  padding: 5px;
-
-  :hover {
-    background-color: #77b7dd;
-    cursor: pointer;
-    border-radius: 15px;
-  }
-
-  .sharing {
-    color: #ee2560;
-  }
-`;
 
 const FaIcon = styled.i`
   width: 30px;
   font-size: calc(16px + 1vmin);
 `;
 
-const StopButton = styled.div`
-  width: 75px;
-  height: 30px;
-  border: none;
-  font-size: 0.9375rem;
-  line-height: 30px;
-  margin-right: 15px;
-  background-color: #ee2560;
-  border-radius: 15px;
+const Stop = styled.div`
+position: relative;
+width: 75px;
+border: none;
+font-size: 0.9375rem;
+padding: 5px;
 
-  :hover {
-    background-color: #f25483;
-    cursor: pointer;
-  }
+:hover {
+  background-color: #ff0000;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+* {
+  pointer-events: none;
+}
 `;
 
-const CameraButton = styled.div`
+const Button = styled.div`
   position: relative;
   width: 75px;
   border: none;
@@ -185,61 +133,12 @@ const CameraButton = styled.div`
   .fa-video-slash {
     color: #ee2560;
   }
+
+  .sharing {
+    color: #00ff00;
+  }
+
 `;
 
-const SwitchMenu = styled.div`
-  display: flex;
-  position: absolute;
-  width: 20px;
-  top: 7px;
-  left: 80px;
-  z-index: 1;
-
-  :hover {
-    background-color: #476d84;
-    cursor: pointer;
-    border-radius: 15px;
-  }
-
-  * {
-    pointer-events: none;
-  }
-
-  > i {
-    width: 90%;
-    font-size: calc(10px + 1vmin);
-  }
-`;
-
-const SwitchList = styled.div`
-  display: flex;
-  flex-direction: column;
-  position: absolute;
-  top: -65.95px;
-  left: 80px;
-  background-color: #4ea1d3;
-  color: white;
-  padding-top: 5px;
-  padding-right: 10px;
-  padding-bottom: 5px;
-  padding-left: 10px;
-  text-align: left;
-
-  > div {
-    font-size: 0.85rem;
-    padding: 1px;
-    margin-bottom: 5px;
-
-    :not(:last-child):hover {
-      background-color: #77b7dd;
-      cursor: pointer;
-    }
-  }
-
-  > div:last-child {
-    border-top: 1px solid white;
-    cursor: context-menu !important;
-  }
-`;
 
 export default BottomBar;
