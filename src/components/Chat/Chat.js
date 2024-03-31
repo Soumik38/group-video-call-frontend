@@ -75,6 +75,7 @@ const ChatContainer = styled.div`
   background-color: white;
   transition: all 0.5s ease;
   overflow: hidden;
+  border-left: 1px solid black;
 `;
 
 const TopHeader = styled.div`
@@ -159,7 +160,8 @@ const BottomInput = styled.input`
   bottom: 0;
   width: 100%;
   height: 8%;
-  padding: 15px;
+  padding: 10px;
+  margin: 10px;
   border-top: 1px solid rgb(69, 69, 82, 0.25);
   box-sizing: border-box;
   opacity: 0.7;

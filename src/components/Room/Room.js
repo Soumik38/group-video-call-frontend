@@ -186,7 +186,7 @@ const Room = (props) => {
   function createUserVideo(peer, index, arr) {
     return (
       <div
-        className={`VideoBox width-peer${peers.length > 8 ? '' : peers.length}`}
+        className={`video-box VideoBox width-peer${peers.length > 8 ? '' : peers.length}`}
         key={index}
       >
         {writeUserName(peer.userName)}
@@ -332,7 +332,7 @@ const Room = (props) => {
       <div className='VideoAndBarContainer'>
         <div className='VideoContainer'>
           {/* Current User Video */}
-          <div className={`VideoBox width-peer${peers.length > 8 ? '' : peers.length}`}>
+          <div className={`video-box VideoBox width-peer${peers.length > 8 ? '' : peers.length}`}>
             {userVideoAudio['localUser'].video ? null : (
               <div className='UserName'>{currentUser}</div>
             )}
@@ -345,7 +345,7 @@ const Room = (props) => {
               playInline
             ></MyVideo>
           </div>
-          {/* Joined User Vidoe */}
+          {/* Joined User Video */}
           {peers &&
             peers.map((peer, index, arr) => createUserVideo(peer, index, arr))}
         </div>

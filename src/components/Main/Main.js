@@ -30,7 +30,6 @@ const Main = (props) => {
 		  localStorage.setItem('myName', JSON.stringify(name))
 	  }, [email,name])
 
-
   useEffect(() => {
 
     socket.on('FE-error-user-exist', ({ error }) => {
@@ -47,7 +46,6 @@ const Main = (props) => {
     })
   }, [props.history])
 
-
   function clickJoin() {
     const roomName = roomRef.current.value;
     const userName = userRef.current.value;
@@ -62,33 +60,34 @@ const Main = (props) => {
   }
 
   return (
-    <div>
-      {loggedIn && <div>
-        {name}
-        <div onClick={()=>{
-          props.history.push('/signin')
-          localStorage.clear()
-        }}>logout</div>
-      </div>}
-      {!loggedIn && <div>
-          <div onClick={()=>props.history.push('/signin')}>Sign In</div>
-          <div onClick={()=>props.history.push('/signup')}>Sign Up</div>
-        </div>}
-    <div className='MainContainer'>
-      <div className='Row'>
-        <div className='Label' htmlFor="roomName">Room Name</div>
-        <input type="text" id="roomName" ref={roomRef} />
+    <div className='body'>
+      <div className='login-container'>
+        {loggedIn && <h3>{name}</h3>}
+        <div>
+          <label>Room No.</label>
+          <input type='text' id="roomName" ref={roomRef} placeholder='Enter Room No.'/>
+          <div className={loggedIn ? 'none':''}>
+            <label>Name</label>
+            <input type="text" id="userName" ref={userRef} value={name} onChange={(e)=>setName(e.target.value)} placeholder='Enter Name'/>
+          </div>
+          <button  className='login-button' onClick={clickJoin}>Join</button>
+          {err ? <div className='Error'>{errMsg}</div> : null}
+        </div>
+        <div className='mt-4'>
+        <div>
+          {!loggedIn ? <div className='additional-login'>
+            <div className='login-button not-logged-in' onClick={()=>props.history.push('/signin')}>Sign In</div>
+            <div className='login-button not-logged-in' onClick={()=>props.history.push('/signup')}>Sign Up</div>
+          </div> :
+            <span className='logout' onClick={()=>{
+              props.history.push('/signin')
+              localStorage.clear()
+            }}>logout</span>}
+          </div>
+        </div>
       </div>
-      <div className='Row'>
-        <div className='Label' htmlFor="userName">User Name</div>
-        <input type="text" id="userName" ref={userRef} value={name} onChange={(e)=>setName(e.target.value)}/>
-      </div>
-      <div className='JoinButton' onClick={clickJoin}> Join </div>
-      {err ? <div className='Error'>{errMsg}</div> : null}
-    </div>
     </div>
   );
 };
-
 
 export default Main;

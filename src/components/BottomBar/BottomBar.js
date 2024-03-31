@@ -76,6 +76,7 @@ const Bar = styled.div`
   justify-content: center;
   align-items: center;
   font-weight: 500;
+  padding:15px;
 `;
 
 const Center = styled.div`
@@ -89,19 +90,24 @@ const Center = styled.div`
 const FaIcon = styled.i`
   width: 30px;
   font-size: calc(16px + 1vmin);
+  color:black;
+  
 `;
 
 const Stop = styled.div`
 position: relative;
-width: 75px;
+width: 50px;
 border: none;
 font-size: 0.9375rem;
-padding: 5px;
+padding: 8px;
+border: 1px solid black;
+border-radius: 5px;
+margin:5px;
 
 :hover {
   background-color: #ff0000;
   cursor: pointer;
-  border-radius: 15px;
+  border-radius: 5px;
 }
 
 * {
@@ -111,15 +117,18 @@ padding: 5px;
 
 const Button = styled.div`
   position: relative;
-  width: 75px;
+  width: 50px;
   border: none;
   font-size: 0.9375rem;
-  padding: 5px;
+  padding: 8px;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin:5px;
 
   :hover {
-    background-color: #77b7dd;
+    background-color: #BF40BF;
     cursor: pointer;
-    border-radius: 15px;
+    border-radius: 5px;
   }
 
   * {

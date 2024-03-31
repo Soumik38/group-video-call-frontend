@@ -1,47 +1,108 @@
-
-
-.MainContainer {
-  display: flex;
-  flex-direction: column;
-}
-
-.Row {
+.body {
+  background-color: white;
+  height: 100vh;
+  width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
-  margin-top: 15px;
-  line-height: 35px;
+  justify-content: center;
 }
 
-Input {
-  width: 150px;
-  height: 35px;
-  margin-left: 15px;
-  padding-left: 10px;
-  outline: none;
+.box {
+  color: aqua;
+}
+
+.login-container {
+  text-align: center;
+  width: 20px;
+  padding: 20px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.additional-login {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.not-logged-in {
+  font-size: x-small;
+  padding: 10px;
+  margin: 10px;
+}
+
+.none {
+  display: none;
+}
+
+.logout {
+  color: #333;
+  font-size: x-small;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+h3 {
+  color: #333;
+}
+
+form {
+  margin-top: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+.password-container {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.login-button {
+  border-radius: 32px;
+  background: #9176ff;
+  color: #3639fe;
+  padding: 10px 20px;
   border: none;
-  border-radius: 5px;
+  cursor: pointer;
 }
 
-.Error{
-  margin-top: 10px;
-  font-size: 20px;
-  color: #e85a71;
+.login-button:hover {
+  background-color: #402e85;
 }
 
-.JoinButton {
-  height: 40px;
-  margin-top: 35px;
-  outline: none;
-  border: none;
-  border-radius: 15px;
-  color: #d8e9ef;
-  background-color: #4ea1d3;
-  font-size: 25px;
-  font-weight: 500;
 
-  :hover {
-    background-color: #7bb1d1;
-    cursor: pointer;
-  }
+
+.buttons-container {
+  text-align: center;
+  width: 40%;
 }
