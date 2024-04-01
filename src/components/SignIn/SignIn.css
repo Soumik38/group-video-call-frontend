@@ -88,3 +88,8 @@ input {
     text-align: center;
     width: 40%;
 }
+
+small {
+    margin: 10px;
+    cursor: pointer;
+}

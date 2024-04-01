@@ -74,15 +74,15 @@ const Main = (props) => {
           {err ? <div className='Error'>{errMsg}</div> : null}
         </div>
         <div className='mt-4'>
-        <div>
-          {!loggedIn ? <div className='additional-login'>
-            <div className='login-button not-logged-in' onClick={()=>props.history.push('/signin')}>Sign In</div>
-            <div className='login-button not-logged-in' onClick={()=>props.history.push('/signup')}>Sign Up</div>
-          </div> :
-            <span className='logout' onClick={()=>{
-              props.history.push('/signin')
-              localStorage.clear()
-            }}>logout</span>}
+          <div>
+            {!loggedIn ? <div className='additional-login'>
+                <div className='login-button not-logged-in' onClick={()=>props.history.push('/signin')}>Sign In</div>
+                <div className='login-button not-logged-in' onClick={()=>props.history.push('/signup')}>Sign Up</div>
+              </div> :
+              <span className='logout' onClick={()=>{
+                props.history.push('/signin')
+                localStorage.clear()
+              }}>logout</span>}
           </div>
         </div>
       </div>

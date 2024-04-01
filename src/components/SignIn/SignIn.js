@@ -1,5 +1,4 @@
-import React,{useEffect,useState} from 'react'
-// import {useNavigate,Link} from 'react-router-dom'
+import React,{useState} from 'react'
 import axios from 'axios'
 import './SignIn.css'
 
@@ -42,7 +41,7 @@ const SignIn = (props) => {
           <button type='submit' onClick={submit} className='login-button'>Login</button>
         </form>
         <div className='mt-4'>
-        <span className='text-indigo-800 font-semibold' onClick={()=>{props.history.push('/signup')}}>Do not have an account ?</span>
+        <small onClick={()=>{props.history.push('/signup')}}>Do not have an account ?</small>
         </div>
       </div>
     </div>

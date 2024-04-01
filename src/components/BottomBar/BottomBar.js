@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const BottomBar = ({
@@ -13,12 +13,6 @@ const BottomBar = ({
   showVideoDevices,
   setShowVideoDevices
 }) => {
-  const handleToggle = useCallback(
-    (e) => {
-      setShowVideoDevices((state) => !state);
-    },
-    [setShowVideoDevices]
-  );
 
   return (
     <Bar>
@@ -85,8 +79,6 @@ const Center = styled.div`
   justify-content: center;
 `;
 
-
-
 const FaIcon = styled.i`
   width: 30px;
   font-size: calc(16px + 1vmin);
@@ -148,6 +140,5 @@ const Button = styled.div`
   }
 
 `;
-
 
 export default BottomBar;

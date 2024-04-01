@@ -5,7 +5,6 @@ import Room from './components/Room/Room'
 import SignIn from './components/SignIn/SignIn'
 import SignUp from './components/SignUp/SignUp'
 import styled from 'styled-components'
-import PrivateRoute from './PrivateRoute'
 
 function App() {
   return (

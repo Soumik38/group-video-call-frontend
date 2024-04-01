@@ -1,11 +1,11 @@
-import React,{useEffect,useState} from 'react'
+import React,{useState} from 'react'
 import axios from 'axios'
 import './SignUp.css'
 const SignUp = (props) => {
   const [email,setEmail]=useState('')
   const [pass,setPass]=useState('')
   const [name,setName]=useState('')
-  const [confPass,setConfPass]=useState('')
+  // const [confPass,setConfPass]=useState('')
   
   async function submit(e){
     e.preventDefault()
@@ -65,9 +65,9 @@ const SignUp = (props) => {
           
           <button type='submit' onClick={submit} className='signup-button'>Sign Up</button>
         </form>
-        <small>By creating an account, you agree to the <a href="#">Terms of Use</a> and <a href="#">Privacy Policy</a>.</small>
+        {/* <small>By creating an account, you agree to the <a >Terms of Use</a> and <a>Privacy Policy</a>.</small> */}
         <div className='mt-4'>
-        <span className='text-indigo-800 mt-3 font-semibold' onClick={()=>props.history.push('/signin')}>Already have an account ?</span>
+        <small onClick={()=>props.history.push('/signin')}>Already have an account ?</small>
         </div>
       </div>
     </div>

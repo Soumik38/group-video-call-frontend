@@ -68,3 +68,8 @@ ul {
 .signup-button:hover {
     background-color: #402e85;
 }
+
+small {
+    margin: 10px;
+    cursor: pointer;
+}
