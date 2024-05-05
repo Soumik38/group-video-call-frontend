@@ -24,6 +24,7 @@ const Room = (props) => {
   const userStream = useRef();
   const roomId = props.match.params.roomId;
 
+
   useEffect(() => {
     // Get Video Devices
     navigator.mediaDevices.enumerateDevices().then((devices) => {
@@ -349,6 +350,7 @@ const Room = (props) => {
           {peers &&
             peers.map((peer, index, arr) => createUserVideo(peer, index, arr))}
         </div>
+        <div className='bottomBarContainer'>
         <BottomBar
           clickScreenSharing={clickScreenSharing}
           clickChat={clickChat}
@@ -361,8 +363,9 @@ const Room = (props) => {
           showVideoDevices={showVideoDevices}
           setShowVideoDevices={setShowVideoDevices}
         />
+        </div>
       </div>
-      <Chat display={displayChat} roomId={roomId} />
+      <Chat display={displayChat} roomId={roomId}/>
     </div>
   );
 };

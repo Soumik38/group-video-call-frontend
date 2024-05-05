@@ -49,6 +49,20 @@ const BottomBar = ({
             ></FaIcon>
           </div>
         </Button>
+
+        <Button>
+          <div>
+            <FaIcon className='fas fa-lightbulb'>
+            </FaIcon>
+          </div>
+        </Button>
+
+        <Button>
+          <div>
+            <FaIcon className='fas fa-cog'>
+            </FaIcon>
+          </div>
+        </Button>
       
         <Stop onClick={goToBack}>
           <div>
@@ -61,7 +75,6 @@ const BottomBar = ({
 };
 
 const Bar = styled.div`
-  position: absolute;
   right: 0;
   bottom: 0;
   width: 100%;
